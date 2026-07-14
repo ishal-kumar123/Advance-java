@@ -17,6 +17,8 @@ public class Main {
 
             pr.setInt(1,sc.nextInt());
             sc.nextLine();
+
+
             pr.setString(2,sc.nextLine());
             pr.setString(3,sc.nextLine());
 
