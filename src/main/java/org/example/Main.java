@@ -8,28 +8,15 @@ public class Main {
         String PASSWORD = "bishal123@";
         try {
 
-            Connection con = DriverManager.getConnection(URL,USER,PASSWORD);
+            Connection connection = DriverManager.getConnection(URL,USER,PASSWORD);
 
-            PreparedStatement pr=con.prepareStatement("insert into student_data values (?,?,?)");
-            System.out.println("Enter id  : \n name :\n Domain :");
-            Scanner sc = new Scanner(System.in);
-
-
-            pr.setInt(1,sc.nextInt());
-            sc.nextLine();
-
-
-            pr.setString(2,sc.nextLine());
-            pr.setString(3,sc.nextLine());
-
+            Statement smt=connection.createStatement();
+            ResultSet rs=smt.executeQuery("select * from student_data");
             //4th Step(Execute Query)
-            int rowsaffect = pr.executeUpdate();
-            System.out.println(rowsaffect);
-            if(rowsaffect>0){
-                System.out.println("Data inserted");
+            while(rs.next())
+            {
+                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
             }
-            con.close();
-
 
 
         } catch ( SQLException e) {
